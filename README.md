@@ -1,6 +1,8 @@
 「Nohn™」及「第二视角™」是虚拟世界底层架构领域的未注册商标，由项目创始团队在先使用并具有广泛行业影响力。
 任何未经授权在相同或相似领域（包括但不限于软件服务、技术开发、标准制定）使用上述标识的行为，均可能构成不正当竞争及商标侵权，Nohn™ 团队保留追究其法律责任的全部权利。
 # Nohn™ Core —— 虚拟世界的灵魂
+This underlying core of the virtual world I designed is just like the Noah’s Ark of the digital civilization era.
+It constructs an independent and self-consistent world rule system, capable of hosting virtual creatures, digital personas and civilization data. Beyond the fluctuations and uncertainties of the real world, it builds an eternally existing haven for spiritual and digital habitation, laying a solid foundation for the continuation, evolution and perpetual existence of virtual civilization.
 
 **Nohn™ = 宪法 + 法律 + 兼容框架**  
 *定义下一代互联网文明的底层公理*
