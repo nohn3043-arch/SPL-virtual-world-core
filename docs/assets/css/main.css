@@ -250,6 +250,32 @@ header {
   font-size: 12px;
 }
 
+a.card.link-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a.card.link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+a.card.link-card .repo-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.2s ease;
+}
+
+a.card.link-card:hover .repo-link {
+  border-color: var(--accent);
+}
+
 /* 响应式 */
 @media (max-width: 640px) {
   header {
