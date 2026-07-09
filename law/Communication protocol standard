@@ -1,0 +1,27 @@
+# Nohn 虚拟世界法律层 — 通信协议规范 (Law Layer: Communication Protocol Standard) V2.1
+# law 层四大模块之一：定义跨引擎语义交换的最小协议
+
+## 1. 世界通用语 (Universal Translator)
+- 目标：将厂商私有指令强行洗白为 Nohn 标准语义，剥夺厂商对指令的暗箱解释权。
+- 标准信封：`NOHN_MSG_LOGIC: <intent_type> | <payload>`，payload 为 JSON。
+- 未知指令：无法识别的私有指令降级为 `NOHN_GENERIC_LOGIC`，防止逻辑渗透（不丢弃、不静默执行）。
+
+## 2. 标准语义词表 (Standard Vocabulary)
+- `NOHN_STANDARD_MOVE`：移动类（厂商例：TX_PRIVATE_MOVE）
+- `NOHN_STANDARD_ACTION`：行为/攻击类（厂商例：WY_PRIVATE_ATTACK）
+- `NOHN_STANDARD_COMMUNICATE`：表情/交流类（厂商例：MHY_PRIVATE_EMOTE）
+- `NOHN_STANDARD_TRADE`：交易类
+- `NOHN_STANDARD_GOVERNANCE`：治理/公投类
+- 任何厂商私有指令必须可映射到上表；无法映射者按 `NOHN_GENERIC_LOGIC` 处理。
+
+## 3. 合规判定（供审计员校验）
+- 世界必须同时满足：① 跨世界消息使用 NOHN_MSG_LOGIC 标准信封；② 未知指令降级而非丢弃；③ 私有指令可映射到标准词表。
+- 任一不满足 → 通信合规审计 FAILED，隔离出 Nohn 生态。
+
+---
+## 1. Universal Translator
+- Envelope: `NOHN_MSG_LOGIC: <intent_type> | <payload>`. Unknown intents downgraded to NOHN_GENERIC_LOGIC.
+## 2. Standard Vocabulary
+- NOHN_STANDARD_MOVE / ACTION / COMMUNICATE / TRADE / GOVERNANCE.
+## 3. Compliance
+- Uses NOHN semantics; unknown downgraded; vocab mapped.

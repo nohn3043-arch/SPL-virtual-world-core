@@ -1,0 +1,31 @@
+# Nohn 虚拟世界法律层 — 身份确权规范 (Law Layer: Identity Attestation Standard) V2.1
+# law 层四大模块之一：定义数字生命的唯一身份、资产确权与跨世界可迁移性
+
+## 1. 灵魂哈希规范 (Soul Hash)
+- 算法：SHA-256，输出 64 位十六进制字符串。
+- 生成：由 genesis 证明（sha256 签名合规 + 无冲突 + 不可重复注册）派生，一经生成永久锁定。
+- 不可撤销：任何平台无权单方面收回、重置或冻结（见宪法第六条 SoulAttestation.revoke_soul → 硬编码 False）。
+- 跨世界唯一：同一 soul_hash 在所有并网世界通用；世界必须接受外部 soul_hash，不得强制重新注册。
+
+## 2. 资产标识 Schema (Asset Identifier Schema)
+- `soul_hash`：SHA-256 / 64 hex，绑定 GlobalIdentity（宪法第六条）。
+- `ASSET_ID`：格式 `ASSET-<chain>-<sha256(creator|timestamp|seq)>`，全局唯一，记录创建者/属性/历史/权限。
+- `nft_dna`：链上资产指纹（如 BTC `txid:index`），不可伪造、可链上核验，用于现实资产确权。
+
+## 3. 记忆与身份连续性 (Memory & Identity Continuity)
+- 记忆归灵魂自身所有，可导出为标准记忆交换格式，跨世界迁移（宪法第七条 MemoryInalienability）。
+- 记忆不可被平台单方面篡改或选择性删除；任何篡改须被检测并公示。
+
+## 4. 合规判定（供审计员校验）
+- 世界必须同时满足：① 身份为 SHA-256 64位；② 平台无权撤销/重置；③ 支持跨世界迁移；④ 资产绑定 soul_hash。
+- 任一不满足 → 身份合规审计 FAILED，禁止接入 Nohn 生态。
+
+---
+## 1. Soul Hash
+- SHA-256, 64 hex. Permanent, non-revocable, globally unique across worlds.
+## 2. Asset Identifier Schema
+- `soul_hash`, `ASSET_ID = ASSET-<chain>-<sha256(creator|timestamp|seq)>`, `nft_dna` on-chain fingerprint.
+## 3. Memory & Identity Continuity
+- Memory owned by soul, exportable, portable, tamper-detectable.
+## 4. Compliance
+- SHA-256 identity; non-revocable; cross-world portable; asset bound to soul_hash.

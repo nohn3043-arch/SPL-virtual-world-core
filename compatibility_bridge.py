@@ -31,9 +31,9 @@ class NohnCompatibilityBridge:
         功能：强制校验重力、时间流速、空间尺度。
         逻辑：这是并网的物理前提。任何试图通过“数值膨胀”来引流的旧世界将被物理层隔离。
         """
-        # Nohn 宪法规定的公理级参数
+        # Nohn 宪法规定的公理级参数（对齐 law/Physics baseline standard V2.1）
         NOHN_AXIOMS = {
-            "gravity": 9.8,
+            "gravity": 9.80665,
             "time_dilation": 1.0,
             "unit_scale": "metric"
         }
@@ -54,7 +54,28 @@ class NohnCompatibilityBridge:
             return False
         
         # 此处对接 Nohn 分布式身份验证层
-        return True 
+        return True
+
+    def check_economic_standard(self, economy: Dict) -> bool:
+        """
+        【全球经济统一标准 V2.1 - 海关校验】
+        功能：新世界接入前，核验其经济系统是否真正 1:1 锚定现实。
+        逻辑：与 SecondPerspectiveAuditor._audit_economic_law 同源校验。
+        """
+        required = {
+            "real_peg_1to1": True,
+            "proof_of_reserve": True,
+            "redemption_right": True,
+            "unilateral_fee": False,
+            "asset_bound_to_soul": True,
+        }
+        for key, val in required.items():
+            if economy.get(key) != val:
+                return False
+        # 波动资产预言机独立来源须 ≥ 3
+        if len(economy.get("oracle_sources", [])) < 3:
+            return False
+        return True
 
 # 使用示例：
 # bridge = NohnCompatibilityBridge()

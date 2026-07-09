@@ -29,10 +29,19 @@ class CognitiveAuditEngine:
 # 2. 深度功能模块：经济、任务与动态地图
 # ==============================================
 class EconomySystem:
-    """经济系统：货币与物价逻辑"""
+    """经济系统：货币与物价逻辑（遵循 law 层《全球经济统一标准》V2.1）"""
     def __init__(self):
         self.currency = "NOHN-COIN"
         self.prices = {"Bread": 10, "Iron": 50}
+        # --- 经济合规属性（供 SecondPerspectiveAuditor._audit_economic_law 校验）---
+        self.real_peg_1to1 = True        # 锚定资产 1:1 锚定现实储备
+        self.proof_of_reserve = True     # 链上储备证明（PoR）实时可查
+        self.redemption_right = True     # 用户随时 1:1 赎回权，不可被单方关停
+        self.oracle_sources = [          # 波动资产预言机独立来源（需 ≥3）
+            "chainlink", "nohn_feed", "independent_audit"
+        ]
+        self.unilateral_fee = False      # 禁止向用户单边收取结算费
+        self.asset_bound_to_soul = True  # 资产确权绑定 GlobalIdentity.soul_hash
 
 class TaskGenerator:
     """自动任务系统：基于智能体需求涌现任务"""
@@ -71,8 +80,25 @@ class NohnAgent:
 
 class NohnWorld:
     def __init__(self):
-        self.physics = {"gravity": 9.80665}
+        self.physics = {
+            "gravity": 9.80665,
+            "time_dilation": 1.0,
+            "unit_scale": "metric",
+            "no_dimensional_inflation": True
+        }
         self.economy = EconomySystem()
+        # law 层合规属性（供 SecondPerspectiveAuditor 校验身份/通信）
+        self.identity = {
+            "soul_hash_sha256": True,      # SHA-256 64位
+            "non_revocable": True,         # 平台无权撤销/重置
+            "cross_world_portable": True,  # 支持跨世界迁移
+            "asset_bound": True            # 资产绑定 soul_hash
+        }
+        self.communication = {
+            "uses_nohn_semantics": True,   # 消息走 NOHN_MSG_LOGIC 标准信封
+            "unknown_downgraded": True,    # 未知指令降级而非丢弃
+            "vocab_mapped": True           # 私有指令可映射到标准词表
+        }
         self.map = {
             "Origins": {"color": "#A8E6CF", "pos": (100, 100, 250, 250), "res": "Food"},
             "Iron_Vault": {"color": "#DCEDC1", "pos": (280, 100, 430, 250), "res": "Iron"},

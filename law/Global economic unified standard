@@ -1,33 +1,72 @@
-# Nohn 
- V2.0
-## 1. 资产确权规范 (Asset Attestation)
-### 1.1 现实数字资产
-- 【比特币】：纳入全局审计链，历史记录全量镜像，总量锁定为 21,000,000 枚，每一枚绑定唯一 `nft_dna`，价值锚定「全局公理信用」，永久有效、不可篡改。
-- 【合规法币稳定币】：按发行储备1:1映射，纳入统一清结算链路，与所有资产无差别互通。
+# Nohn 虚拟世界法律层 — 全球经济统一标准 (Law Layer: Global Economic Unified Standard) V2.1
+# 定位：law 层四大模块（身份确权 / 通信协议 / 物理基准 / 合规细则）之「经济合规细则」
+# 核心目标：虚拟世界货币与现实 1:1 互通
 
-### 1.2 虚拟世界资产
-- 【平台货币/积分/代币】：无论发行方、无论引擎，**只要提交发行总量+流通证明，自动映射为 Nohn 标准资产**，归属权绑定用户 `GlobalIdentity.soul_hash`，跨平台可转移、可通兑、可存储。
-- 【NFT/数字道具/元宇宙资产】：每一项生成唯一 `ASSET_ID`，记录「创建者、属性、历史、权限」，全局唯一确权，复制即视为无效，彻底杜绝造假与盗用。
+> 本标准采用「现实锚定」模型：锚定类资产按 1:1 锚定现实储备，波动类资产按实时市值入账。
+> 因此本标准不采用浮动汇率；原 V2.0「汇率由市场自由形成、无强制定价」条款作废。
+
+## 1. 资产确权规范 (Asset Attestation)
+### 1.1 现实资产接入 (Real-World Asset Onboarding)
+#### A. 稳定锚定资产（Stable-Pegged）
+- 【合规法币稳定币 / CBDC】：按发行储备 1:1 映射，纳入统一清结算链路，与所有资产无差别互通。
+- 强制储备证明（PoR）：发行方须提供链上可验证的 1:1 储备证明，审计层实时校验；储备率 < 100% 即暂停兑换并公示。
+- 赎回权：持币人有权随时按 1:1 将锚定资产兑回现实法币；赎回通道必须常驻，不可由任何一方关停（违宪见宪法第十条）。
+
+#### B. 波动现实资产（Volatile，不承诺 1:1）
+- 【比特币 / 黄金等】：按「接入时刻的实时公允价值」入账，绑定唯一 `nft_dna`；出世界时按实时市值赎回。
+- 总量锁定类（如 BTC 21,000,000 枚）仅作链上镜像记录，不赋予「价值不变」属性——其现实价格随市场浮动。
+
+### 1.2 虚拟世界资产 (Virtual World Assets)
+- 【平台货币 / 积分 / 代币】：无论发行方、无论引擎，提交「发行总量 + 流通证明」后自动映射为 Nohn 标准资产，归属权绑定用户 `GlobalIdentity.soul_hash`，跨平台可转移、可通兑、可存储。
+- 【NFT / 数字道具 / 元宇宙资产】：每项生成唯一 `ASSET_ID`，记录「创建者、属性、历史、权限」，全局唯一确权；复制即视为无效，彻底杜绝造假与盗用。
 
 ## 2. 价值互通协议 (Universal Value Swap)
-- 所有资产（比特币、法币、游戏币、道具）底层统一计价单位为 `NOHN_POINT`（公理点），汇率由市场自由形成、系统实时审计、无强制定价。
-- 跨世界兑换：遵循 `1:1 价值锚定` 原则，**无手续费、无损耗、秒到账、全程可查**。
+- 统一计价单位：`NOHN_POINT`（公理点）。
+- 与现实互通原则：
+  - 锚定类资产 → 按 1:1 锚定现实储备；
+  - 波动类资产 → 按实时市值折算为 NOHN_POINT。
+- 跨世界 / 跨现实兑换：锚定类遵循 `1:1 价值锚定` 原则，无强制手续费、无损耗、秒到账、全程可查。
+- 结算成本：由储备利息或协议补贴覆盖，禁止向用户单边收取（与宪法第十条「反中心化控制」一致，避免引入中心化收费节点）。
 
 ## 3. 发行与销毁规则 (Supply Control)
-- 新增发行：必须提交「价值背书+用途说明」，经审计通过后方可进入流通，杜绝空气币与滥发。
+- 新增发行：必须提交「价值背书 + 用途说明」，经审计通过后方可进入流通，杜绝空气币与滥发。
 - 资产销毁：永久记录进审计日志，全网公示，不可撤回。
 
+## 4. 储备托管与赎回机制 (Reserve Custody & Redemption)
+- 托管方：必须为「链上储备证明（PoR）自动审计」的多签 / 智能合约托管，禁止单一实体温权托管。
+- 赎回通道：锚定资产持币人可随时 1:1 赎回现实法币；赎回接口须公开、不可被单方关停。
+- 破产隔离：储备资产与运营方资产隔离，运营方破产不影响用户赎回权。
+
+## 5. 预言机与估值标准 (Oracle & Valuation)
+- 实时市值类资产必须接入 ≥ 3 个独立预言机来源，取中位数 / 加权平均，防单点操纵。
+- 预言机签名须上链可验证；异常波动触发熔断与人工复核。
+
+## 6. 资产标识 Schema（供审计与跨世界校验）
+- `soul_hash`：SHA-256，64 位十六进制，绑定 `GlobalIdentity`（见 law.py / 宪法第六条）。
+- `ASSET_ID`：格式 `ASSET-<chain>-<sha256(creator|timestamp|seq)>`，全局唯一。
+- `nft_dna`：链上资产指纹（如 BTC 的 `txid:index`），不可伪造、可链上核验。
+
+---
 ## 1. Asset Attestation
-### 1.1 Real-World Digital Assets
-- 【Bitcoin】: Included in the global audit chain, with a full mirror of historical records. The total amount is locked at 21,000,000 units. Each unit is bound to a unique `nft_dna`, with its value anchored to "global axiomatic credit," permanently valid and unalterable.
-- 【Compliant Fiat Stablecoins】: Mapped on a 1:1 basis with issuance reserves, integrated into a unified clearing and settlement circuit, and interoperable with all assets without distinction.
+### 1.1 Real-World Asset Onboarding
+#### A. Stable-Pegged
+- 【Compliant Fiat Stablecoins / CBDC】: Mapped 1:1 with issuance reserves, integrated into unified clearing, interoperable with all assets.
+- Mandatory Proof-of-Reserve (PoR): issuer must provide on-chain verifiable 1:1 reserve proof, audited in real time; reserve ratio < 100% suspends swapping.
+- Redemption Right: holders may redeem anchored assets 1:1 to real fiat at any time; redemption channel must be permanent and unclosable by any single party.
+#### B. Volatile (no 1:1 promise)
+- 【Bitcoin / Gold etc.】: booked at real-time fair value at onboarding, bound to unique `nft_dna`; redeemed at real-time market value on exit.
+- Fixed-supply assets (e.g. BTC 21,000,000) are mirrored on-chain records only, not granted "value-stable" property.
 ### 1.2 Virtual World Assets
-- 【Platform Currency/Points/Tokens】: Regardless of the issuer or engine, **as long as the total issuance and proof of circulation are submitted, they are automatically mapped to Nohn standard assets**, with ownership bound to the user's `GlobalIdentity.soul_hash`, transferable, convertible, and storable across platforms.
-- 【NFT/Digital Props/Metaverse Assets】: Each item generates a unique `ASSET_ID`, recording "creator, attributes, history, permissions," with globally unique attestation. Duplication is considered invalid, completely eliminating forgery and theft.
+- Platform currencies/points/tokens auto-map to Nohn standard assets upon submitting total supply + circulation proof; ownership bound to `GlobalIdentity.soul_hash`.
+- NFT/props generate unique `ASSET_ID` recording creator/attributes/history/permissions; duplication is invalid.
 ## 2. Universal Value Swap
-- All assets (Bitcoin, fiat currency, game currency, props) have a unified underlying unit of account called `NOHN_POINT` (Axiom Point). Exchange rates are freely formed by the market, audited in real-time by the system, without mandatory pricing.
-- Cross-World Exchange: Follows the principle of `1:1 Value Anchoring`, **no fees, no loss, instant arrival, and fully traceable**.
+- Unit of account: `NOHN_POINT`. Anchored assets swap 1:1 to real reserves; volatile assets convert at real-time market value.
+- Cross-world/real swapping: 1:1 value anchoring for anchored assets, no forced fees, no loss, instant, fully traceable.
 ## 3. Supply Control
-- New Issuance: Must submit "value endorsement + description of use," and can only enter circulation after passing the audit, preventing worthless coins and over-issuance.
-- Asset Destruction: Permanently recorded in the audit log, publicized throughout the network, and irreversible.
-"""
+- New issuance requires value endorsement + use description, audited before circulation. Destruction is permanently logged.
+## 4. Reserve Custody & Redemption
+- Custody via on-chain PoR multi-sig/contract; no single-entity custody. Redemption 1:1 anytime; bankruptcy-isolated reserves.
+## 5. Oracle & Valuation
+- ≥3 independent oracles, median/weighted average, on-chain signed; anomaly triggers circuit breaker.
+## 6. Asset Identifier Schema
+- `soul_hash`: SHA-256, 64 hex. `ASSET_ID`: `ASSET-<chain>-<sha256(...)>`. `nft_dna`: on-chain fingerprint.

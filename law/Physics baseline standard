@@ -1,0 +1,27 @@
+# Nohn 虚拟世界法律层 — 物理基准规范 (Law Layer: Physics Baseline Standard) V2.1
+# law 层四大模块之一：统一物理常数，防止维度崩坏与数值膨胀引流
+
+## 1. 公理级物理常数 (Axiomatic Constants)
+- `CONST_GRAVITY = 9.80665`（m/s²，标准重力加速度，精确值）
+- `CONST_TIME_RATE = 1.0`（统一时间流速，time_dilation 必须为 1.0）
+- `UNIT_SCALE = "METER"`（统一空间度量衡，公制）
+- 要素反应表（Element Reactions）：
+  - fire + water → evaporation（蒸发）
+  - fire + electro → overload（超载）
+  - 其余反应由各世界声明并登记，但不得与公理反应冲突。
+
+## 2. 维度通胀禁令 (No Dimensional Inflation)
+- 禁止通过"数值膨胀"（如异常重力、加速时间、放大单位）引流旧世界。
+- 任何物理常数偏离基准的世界，将在物理层被隔离，不可与 Nohn 生态交互。
+
+## 3. 合规判定（供审计员校验）
+- 世界必须同时满足：① 重力对齐 9.80665（容差 1e-4）；② 时间流速 = 1.0；③ 单位制为公制；④ 无维度通胀。
+- 任一不满足 → 物理合规审计 FAILED，物理层隔离。
+
+---
+## 1. Axiomatic Constants
+- gravity 9.80665, time_rate 1.0, unit metric. Element reactions fixed.
+## 2. No Dimensional Inflation
+- Worlds deviating from baseline are physically isolated.
+## 3. Compliance
+- gravity aligned; time 1.0; metric; no inflation.
