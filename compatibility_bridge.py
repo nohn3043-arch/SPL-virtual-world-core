@@ -5,9 +5,11 @@
 
 from typing import Any, Dict
 
+from constitution import NOHN_LAW_AXIOMS, _safe_get
+
 class NohnCompatibilityBridge:
     """
-    海关模块：负责将旧世界（如腾讯、米哈游）的私有逻辑映射至 Nohn 骨架
+    海关模块：负责将旧世界的私有逻辑映射至 Nohn 骨架
     """
 
     def translate_intent(self, raw_intent: Any) -> str:
@@ -16,11 +18,11 @@ class NohnCompatibilityBridge:
         功能：将厂商私有的、带有诱导性或格式不一的指令，强行洗白为 Nohn 标准语义。
         逻辑：剥夺厂商对指令的暗箱解释权，确保跨世界通信的纯粹性。
         """
-        # 建立标准语义映射表
+        # 建立标准语义映射表（示例厂商前缀已替换为中性标识）
         STANDARD_VOCABULARY = {
-            "TX_PRIVATE_MOVE": "NOHN_STANDARD_MOVE",
-            "WY_PRIVATE_ATTACK": "NOHN_STANDARD_ACTION",
-            "MHY_PRIVATE_EMOTE": "NOHN_STANDARD_COMMUNICATE"
+            "VENDOR_A_PRIVATE_MOVE": "NOHN_STANDARD_MOVE",
+            "VENDOR_B_PRIVATE_ATTACK": "NOHN_STANDARD_ACTION",
+            "VENDOR_C_PRIVATE_EMOTE": "NOHN_STANDARD_COMMUNICATE"
         }
         # 任何无法识别的私有指令，将被降维处理，防止逻辑渗透
         return STANDARD_VOCABULARY.get(raw_intent, "NOHN_GENERIC_LOGIC")
@@ -31,14 +33,10 @@ class NohnCompatibilityBridge:
         功能：强制校验重力、时间流速、空间尺度。
         逻辑：这是并网的物理前提。任何试图通过“数值膨胀”来引流的旧世界将被物理层隔离。
         """
-        # Nohn 宪法规定的公理级参数（对齐 law/Physics baseline standard V2.1）
-        NOHN_AXIOMS = {
-            "gravity": 9.80665,
-            "time_dilation": 1.0,
-            "unit_scale": "metric"
-        }
-        
-        for key, value in NOHN_AXIOMS.items():
+        # 对齐 constitution.NOHN_LAW_AXIOMS（单一权威来源）
+        for key, value in NOHN_LAW_AXIOMS.items():
+            if key in ("soul_hash_bits", "soul_hash_len", "oracle_min_sources"):
+                continue  # 跳过非物理维度
             if incoming_physics.get(key) != value:
                 return False  # 物理常数冲突，拒绝接入
         return True

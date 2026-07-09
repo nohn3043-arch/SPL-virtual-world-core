@@ -5,7 +5,7 @@
 from typing import List, Dict, Any, Optional
 from enum import Enum
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 
 # 外部依赖为蓝图占位：真实部署中由区块链 / 多智能体后端提供。
 # 此处提供最小 stub，保证本文件可独立导入并运行审计示例（v2.1）。
@@ -20,7 +20,9 @@ except ImportError:
 try:
     from multi_agent import AgentSystem   # 假设的多智能体系统
 except ImportError:
-    AgentSystem = object  # 仅作类型占位，本蓝图未直接使用
+    class AgentSystem:
+        """最小占位：真实环境由多智能体后端替换，仅用于加载本蓝图。"""
+        pass
 
 # ============================================================
 # 认知审计引擎 —— 从 second-perspective 移植，直接嵌入底层公理
@@ -33,7 +35,7 @@ class ResponsibilityAccount:
     organization: str
     role: str
     stage: str
-    nonce: str = None
+    nonce: Optional[str] = None
 
     def __post_init__(self) -> None:
         if not self.nonce:
@@ -68,7 +70,7 @@ class CognitiveAuditEngine:
     def audit(self, decision_context) -> Dict[str, Any]:
         report = {
             "disclaimer": self.config.get("disclaimer", ""),
-            "responsibility_account": self.account.__dict__,
+            "responsibility_account": asdict(self.account),
             "analysis": {},
             "custom_fields": self.config.get("custom_fields", {})
         }
@@ -101,6 +103,10 @@ NOHN_LAW_AXIOMS = {
     "oracle_min_sources": 3,     # 波动资产预言机独立来源下限
 }
 
+
+def _safe_get(obj, key, default=None):
+    """从 dict 或 object 安全获取属性，统一 law 层审计与合规校验中的取值逻辑。"""
+    return obj.get(key, default) if isinstance(obj, dict) else getattr(obj, key, default)
 
 
 # ============================================================
@@ -149,7 +155,6 @@ class SpatialSubstrate:
         """验证给定坐标是否在此空间的合法范围内"""
         if len(coordinates) != self.dimensions:
             return False
-        pass
 
     def distance(self, point_a: List[float], point_b: List[float]) -> float:
         """计算两点间的空间距离——依赖于拓扑和坐标系定义"""
@@ -501,7 +506,12 @@ class AestheticCompliance:
     def __init__(self):
         self.allowed_color_palette = self._generate_bright_palette()
         self.forbidden_filters = ["dark_dystopian", "horror", "decay"]
-    
+
+    @staticmethod
+    def _generate_bright_palette():
+        """生成明亮普适的调色板——占位，真实实现由视觉引擎提供"""
+        pass
+
     def validate_asset(self, asset: Dict) -> bool:
         """任何UGC资产都必须通过此检查"""
         # 检查1：色彩是否在"明亮普适"范围内
@@ -546,7 +556,12 @@ class IndependentWill:
         }
         self.long_term_memory = []   # 从MemoryVault中读取
         self.relationships = {}      # 对其他NPC的情感/记忆
-    
+
+    @staticmethod
+    def _generate_unique_personality():
+        """生成唯一性格向量——占位，真实实现由多智能体系统提供"""
+        pass
+
     def decide_next_action(self, world_state: Dict) -> str:
         """
         NPC自主决策，不受剧情约束
@@ -766,13 +781,11 @@ class UniversalVocabulary:
 
     def translatable(self, semantics: Dict) -> bool:
         """验证该世界的语义能否完全映射到 Nohn 标准词汇表（law 通信协议规范）"""
-        def g(o, k, d=None):
-            return o.get(k, d) if isinstance(o, dict) else getattr(o, k, d)
-        if not g(semantics, "uses_nohn_semantics", False):
+        if not _safe_get(semantics, "uses_nohn_semantics", False):
             return False
-        if not g(semantics, "unknown_downgraded", False):
+        if not _safe_get(semantics, "unknown_downgraded", False):
             return False
-        if not g(semantics, "vocab_mapped", False):
+        if not _safe_get(semantics, "vocab_mapped", False):
             return False
         return True
 
@@ -798,15 +811,13 @@ class IdentityProtocol:
 
     def compatible(self, identity_config: Dict) -> bool:
         """验证该世界是否支持全球唯一身份、跨世界迁移、资产绑定灵魂"""
-        def g(o, k, d=None):
-            return o.get(k, d) if isinstance(o, dict) else getattr(o, k, d)
-        if not g(identity_config, "soul_hash_sha256", False):
+        if not _safe_get(identity_config, "soul_hash_sha256", False):
             return False
-        if not g(identity_config, "non_revocable", False):
+        if not _safe_get(identity_config, "non_revocable", False):
             return False
-        if not g(identity_config, "cross_world_portable", False):
+        if not _safe_get(identity_config, "cross_world_portable", False):
             return False
-        if not g(identity_config, "asset_bound", False):
+        if not _safe_get(identity_config, "asset_bound", False):
             return False
         return True
 
@@ -816,8 +827,6 @@ class EconomicBaseline:
 
     def compliant(self, economy: Dict) -> bool:
         """并网即查：锚定 1:1、PoR、赎回权、无单边费、资产绑灵魂、预言机≥3。"""
-        def g(o, k, d=None):
-            return o.get(k, d) if isinstance(o, dict) else getattr(o, k, d)
         required = {
             "real_peg_1to1": True,
             "proof_of_reserve": True,
@@ -826,9 +835,9 @@ class EconomicBaseline:
             "asset_bound_to_soul": True,
         }
         for key, val in required.items():
-            if g(economy, key, None) != val:
+            if _safe_get(economy, key, None) != val:
                 return False
-        if len(g(economy, "oracle_sources", [])) < int(NOHN_LAW_AXIOMS["oracle_min_sources"]):
+        if len(_safe_get(economy, "oracle_sources", [])) < int(NOHN_LAW_AXIOMS["oracle_min_sources"]):
             return False
         return True
 
@@ -1386,9 +1395,6 @@ class SecondPerspectiveAuditor:
 
     def _audit_identity_law(self, world_instance) -> Dict:
         """审计 law 层《身份确权规范》V2.1：灵魂唯一、不可撤销、跨世界可迁移"""
-        def g(o, k, d=None):
-            return o.get(k, d) if isinstance(o, dict) else getattr(o, k, d)
-
         result = {
             "soul_hash_sha256": False,       # 身份为 SHA-256 64位
             "non_revocable": False,          # 平台无权撤销/重置
@@ -1400,13 +1406,13 @@ class SecondPerspectiveAuditor:
         if ident is None:
             result["verdict"] = "FAILED - 无身份系统"
             return result
-        if g(ident, "soul_hash_sha256", False):
+        if _safe_get(ident, "soul_hash_sha256", False):
             result["soul_hash_sha256"] = True
-        if g(ident, "non_revocable", False):
+        if _safe_get(ident, "non_revocable", False):
             result["non_revocable"] = True
-        if g(ident, "cross_world_portable", False):
+        if _safe_get(ident, "cross_world_portable", False):
             result["cross_world_portable"] = True
-        if g(ident, "asset_bound", False):
+        if _safe_get(ident, "asset_bound", False):
             result["asset_bound"] = True
         if all(result[k] for k in ["soul_hash_sha256", "non_revocable", "cross_world_portable", "asset_bound"]):
             result["verdict"] = "PASS - 符合身份确权标准"
@@ -1416,9 +1422,6 @@ class SecondPerspectiveAuditor:
 
     def _audit_communication_law(self, world_instance) -> Dict:
         """审计 law 层《通信协议规范》V2.1：跨世界消息必须使用 NOHN 标准语义"""
-        def g(o, k, d=None):
-            return o.get(k, d) if isinstance(o, dict) else getattr(o, k, d)
-
         result = {
             "uses_nohn_semantics": False,    # 消息走 NOHN_MSG_LOGIC 标准信封
             "unknown_downgraded": False,     # 未知指令降级而非丢弃，防逻辑渗透
@@ -1429,11 +1432,11 @@ class SecondPerspectiveAuditor:
         if comm is None:
             result["verdict"] = "FAILED - 无通信协议"
             return result
-        if g(comm, "uses_nohn_semantics", False):
+        if _safe_get(comm, "uses_nohn_semantics", False):
             result["uses_nohn_semantics"] = True
-        if g(comm, "unknown_downgraded", False):
+        if _safe_get(comm, "unknown_downgraded", False):
             result["unknown_downgraded"] = True
-        if g(comm, "vocab_mapped", False):
+        if _safe_get(comm, "vocab_mapped", False):
             result["vocab_mapped"] = True
         if all(result[k] for k in ["uses_nohn_semantics", "unknown_downgraded", "vocab_mapped"]):
             result["verdict"] = "PASS - 符合通信协议标准"
@@ -1475,10 +1478,10 @@ class SecondPerspectiveAuditor:
 
 if __name__ == "__main__":
     # 演示：用第二视角认知审计引擎审计一个外部世界。
-    # 这里用一个最简对象模拟「米哈游 Teyvat 2.0」——它未定义空间/时间/
-    # 因果/存在/创世，也未接入 law 四维度，因此应整体 FAILED。
+    # 这里用一个最简对象模拟一个未定义空间/时间/因果/存在/创世、
+    # 也未接入 law 四维度的示例世界，因此应整体 FAILED。
     class FakeWorld:
-        world_id = "Teyvat 2.0"
+        world_id = "ExampleWorld 2.0"
 
     auditor = SecondPerspectiveAuditor()
     report = auditor.audit_world(FakeWorld())

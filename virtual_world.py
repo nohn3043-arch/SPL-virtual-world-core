@@ -1,29 +1,14 @@
-import time, random, json, uuid, tkinter as tk
+import time, random, json, tkinter as tk
 from tkinter import ttk
-from datetime import datetime
-from dataclasses import dataclass
 
 # ==============================================
 # 1. 核心框架：认知审计引擎 (Cognitive Audit Engine)
+# 从 constitution 导入，保持单一权威实现
 # ==============================================
-@dataclass
-class ResponsibilityAccount:
-    organization: str; role: str; stage: str; nonce: str = None
-    def __post_init__(self): 
-        if not self.nonce: self.nonce = uuid.uuid4().hex[:8]
-
-class AuditPlugin:
-    def __init__(self, name, analyze_func):
-        self.name, self.analyze = name, analyze_func
-
-class CognitiveAuditEngine:
-    def __init__(self, account, config):
-        self.account, self.config, self.plugins = account, config, []
-    def register_plugin(self, plugin): self.plugins.append(plugin)
-    def audit(self, ctx):
-        report = {"account": self.account.__dict__, "analysis": {}}
-        for p in self.plugins: report["analysis"][p.name] = p.analyze(ctx)
-        return report
+from constitution import (
+    ResponsibilityAccount, AuditPlugin, CognitiveAuditEngine,
+    NOHN_LAW_AXIOMS,
+)
 
 # ==============================================
 # 2. 深度功能模块：经济、任务与动态地图
@@ -81,10 +66,10 @@ class NohnAgent:
 class NohnWorld:
     def __init__(self):
         self.physics = {
-            "gravity": 9.80665,
-            "time_dilation": 1.0,
-            "unit_scale": "metric",
-            "no_dimensional_inflation": True
+            "gravity": NOHN_LAW_AXIOMS["gravity"],
+            "time_dilation": NOHN_LAW_AXIOMS["time_dilation"],
+            "unit_scale": NOHN_LAW_AXIOMS["unit_scale"],
+            "no_dimensional_inflation": NOHN_LAW_AXIOMS["no_dimensional_inflation"]
         }
         self.economy = EconomySystem()
         # law 层合规属性（供 SecondPerspectiveAuditor 校验身份/通信）
