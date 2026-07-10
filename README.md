@@ -1,58 +1,73 @@
 # A virtual world must first be a world
-「Nohn™」及「第二视角™」是虚拟世界底层架构领域的未注册商标，由项目创始团队在先使用并具有广泛行业影响力。
-任何未经授权在相同或相似领域（包括但不限于软件服务、技术开发、标准制定）使用上述标识的行为，均可能构成不正当竞争及商标侵权，Nohn™ 团队保留追究其法律责任的全部权利。
-# Nohn™ Core —— 虚拟世界的灵魂
-This underlying core of the virtual world I designed is just like the Noah’s Ark of the digital civilization era.
-It constructs an independent and self-consistent world rule system, capable of hosting virtual creatures, digital personas and civilization data. Beyond the fluctuations and uncertainties of the real world, it builds an eternally existing haven for spiritual and digital habitation, laying a solid foundation for the continuation, evolution and perpetual existence of virtual civilization.
 
-**Nohn™ = 宪法 + 法律 + 兼容框架**  
-*定义下一代互联网文明的底层公理*
+"Nohn™" and "Second Perspective™" are unregistered trademarks in the field of virtual-world infrastructure, first used by the founding team and carrying broad industry influence. Any unauthorized use of these marks in the same or similar fields (including but not limited to software services, technology development, and standard-setting) may constitute unfair competition and trademark infringement; the Nohn™ team reserves all rights to pursue legal liability.
 
----
+# Nohn™ Core — The Soul of Virtual Worlds
 
-## 🌟 项目简介
+The underlying core of the virtual world I designed is like the Noah's Ark of the digital-civilization era. It constructs an independent, self-consistent system of world rules, capable of hosting virtual creatures, digital personas, and civilization data. Beyond the fluctuations and uncertainties of the real world, it builds an eternal haven for spiritual and digital habitation, laying a solid foundation for the continuation, evolution, and perpetual existence of virtual civilization.
 
-Nohn™ Core 是面向未来虚拟世界的底层核心框架，由「宪法、法律、兼容框架」三部分构成：
-
-- **宪法 (Constitution)**：虚拟世界的本源公理，内容永久锁定，不可修改，作为整个架构的“根信任锚点”。
-- **法律 (Law)**：身份确权、通信协议、物理基准与合规细则，可随行业需求和技术演进年度迭代，版本化发布。
-- **兼容框架 (Bridge)**：全球统一的互操作协议，作为新旧世界的“接入海关”，确保任意厂商的应用可在 Nohn™ 生态内互联互通。
-
-**本项目不做平台、不做产品、不托管数据、不运营服务**——只定义规则、提供灵魂、守护秩序。
+**Nohn™ = Constitution + Law + Compatibility Framework**
+*Defining the foundational axioms of the next-generation internet civilization*
 
 ---
 
-## ⚠️ 重要声明
+## Project Overview
+
+Nohn™ Core is the underlying core framework for future virtual worlds, composed of three parts — Constitution, Law, and Bridge:
+
+- **Constitution**: The primordial axioms of the virtual world. Permanently locked and immutable, serving as the "root trust anchor" of the entire architecture.
+- **Law**: Identity authorization, communication protocols, physical baselines, and compliance rules. Iterated annually with versioned releases as industry needs and technology evolve.
+- **Bridge**: A globally unified interoperability protocol, acting as the "customs checkpoint" between old and new worlds, ensuring applications from any vendor interconnect within the Nohn™ ecosystem.
+
+**This project builds no platform, ships no product, hosts no data, and operates no service** — it only defines the rules, provides the soul, and guards the order.
+
+---
+
+## Important Notice
 
 © 2026 Nohn™. All Rights Reserved.
 
-本作品（包括但不限于代码、文档、设计语言、架构范式、模型定义体）为原创智力成果，依据《伯尔尼公约》及各国版权法保留所有权利。未经版权方签署书面授权，任何组织或个人不得：
+This Work (including but not limited to code, documentation, design language, architectural paradigms, and model definitions) is original intellectual output, with all rights reserved under the Berne Convention and the copyright laws of each jurisdiction. Without written authorization signed by the rights holder, no organization or individual may:
 
-- 复制、分发、公开传播本作品的源代码或文档
-- 基于本作品进行修改、二次开发、反向工程或将本作品集成至竞品平台
-- 剥离、仿制本作品中定义的宪法条款、法律细则、互操作协议等核心设计理念
+- Copy, distribute, or publicly disseminate the source code or documentation of this Work;
+- Modify, re-develop, reverse-engineer this Work, or integrate it into competing platforms;
+- Strip or imitate the core design concepts defined in this Work, such as constitutional clauses, legal rules, and interoperability protocols.
 
-**商标声明**：「Nohn™」及「第二视角™」为虚拟世界领域的未注册商标，受《反不正当竞争法》及普通法假冒之诉体系保护。任何未经许可的商业使用均构成侵权。
-
----
-
-## 📜 授权模式
-
-本作品**不是开源软件**，不适用任何开源许可证。依据《著作权法》及《计算机软件保护条例》，本作品采用「默认权利保留 + 商业授权」双轨制：
-
-- **个人学习与非商业研究**：允许有限查阅源代码及文档，但不得用于实际部署或二次发布
-- **企业/机构/政府商用**：须单独签署《Nohn™ 商业授权协议》，明确许可范围、合规义务、责任边界
-- **衍生作品合规**：基于本框架开发的衍生项目，必须在代码注释及启动页面显著标注 `Powered by Nohn™ Core`，不得逆向认领框架本身的知识产权
-
-**本作品不处于公共领域，不受任何开源许可证约束。本声明的最终解释权归 Nohn™ 所有。**
-
-完整授权条款见 [LICENSE](./LICENSE) 文件。
+**Trademark Notice**: "Nohn™" and "Second Perspective™" are unregistered trademarks in the virtual-world field, protected under anti-unfair-competition law and the common-law passing-off regime. Any unauthorized commercial use constitutes infringement.
 
 ---
 
-## 📧 商业合作
+## Licensing & Authorization
 
-如需申请商业授权、定制合规评估、或参与 Nohn™ 生态共建，请发送邮件至：**ai@nohnlins.com**
+This Work **is not open-source software** and is not subject to any open-source license. Under the Copyright Law and the Computer Software Protection Regulations, it adopts a "default rights reserved + commercial authorization" dual-track model:
+
+- **Individual study and non-commercial research**: limited viewing of source code and documentation is permitted, but actual deployment or redistribution is prohibited.
+- **Enterprise / institution / government commercial use**: a separate 《Nohn™ Commercial Authorization Agreement》 must be signed, defining scope, compliance obligations, and liability boundaries.
+- **Derivative-work compliance**: derivative projects built on this framework must clearly display `Powered by Nohn™ Core` in code comments and the startup screen, and may not reverse-claim the framework's own intellectual property.
+
+Full terms are in the [LICENSE](./LICENSE) file.
+
+Copyright © 2026 Shanghai Linming Junhua Technology Co., Ltd. and NOHN AI TECHNOLOGY PTE. LTD. All rights reserved.
+
+| User | Purpose | License Requirement |
+|---|---|---|
+| Individual (natural person) | Non-commercial academic research / study / personal experimentation | **Free** under the "Free Individual Research License" in [LICENSE](./LICENSE) |
+| Government agency / public institution / enterprise | Any purpose (incl. internal deployment, product development, service provision) | **Requires prior written paid authorization** |
+
+- **Individual researchers** may use the Work free of charge for non-commercial research under [LICENSE](./LICENSE), but not for any commercial purpose, nor to provide services to any enterprise or government organization.
+- **Government / enterprise users** may not copy, deploy, run, integrate, or distribute the Work before signing a Commercial Authorization Agreement and paying the agreed fee.
+- **Apply for authorization**:
+  - International / Global: [ai@nohnlins.com](mailto:ai@nohnlins.com)
+  - China: [ai@tx.nohnlins.com](mailto:ai@tx.nohnlins.com)
+
+The licensor, governing law, and dispute resolution are determined by the user's location as set out in [LICENSE](./LICENSE): users within the PRC → Shanghai Linming Junhua Technology Co., Ltd. (laws of the PRC); users outside the PRC → NOHN AI TECHNOLOGY PTE. LTD. (laws of Singapore, SIAC arbitration).
+
 ---
 
-*人类需要秩序。虚拟世界需要一个灵魂。我们，提供答案。*
+## Business Cooperation
+
+For commercial authorization, customized compliance assessment, or participation in the Nohn™ ecosystem, contact: **ai@nohnlins.com**
+
+---
+
+*Humanity needs order. A virtual world needs a soul. We provide the answer.*
