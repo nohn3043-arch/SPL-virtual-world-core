@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nohn™ Core — Soul of the Virtual World</title>
+<style>
+  :root {
+    --bg: #030712;
+    --bg-card: rgba(15,23,42,0.8);
+    --bg-card-hover: rgba(30,41,59,0.8);
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --accent: #22d3ee;
+    --accent2: #6366f1;
+    --accent3: #f59e0b;
+    --border: rgba(99,102,241,0.12);
+    --radius: 12px;
+    --blur: blur(16px);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+
+  .hero {
+    min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center; padding:4rem 2rem; position:relative; overflow:hidden;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(34,211,238,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 80%, rgba(99,102,241,0.06) 0%, transparent 60%);
+  }
+  .hero .emblem { font-size:clamp(2.5rem,7vw,5rem); margin-bottom:1.5rem; opacity:0.9; }
+  .hero h1 { font-size:clamp(1.8rem,5vw,3.2rem); font-weight:700; letter-spacing:-0.02em; }
+  .hero h1 .cyan { color:var(--accent); }
+  .hero .tagline { font-size:1.1rem; color:var(--text-muted); margin-top:1rem; max-width:640px; }
+  .hero .law-equation { margin-top:2.5rem; font-size:1rem; color:var(--accent3); font-family:Georgia,serif; letter-spacing:0.05em; }
+
+  .container { max-width:1100px; margin:0 auto; padding:4rem 2rem; }
+  section { margin-bottom:5rem; }
+  h2 { font-size:1.7rem; font-weight:700; margin-bottom:2rem; letter-spacing:-0.01em; }
+  h2 span { color:var(--accent); margin-right:0.4rem; }
+
+  .pillars { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; }
+  .pillar {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:2.2rem; backdrop-filter:var(--blur); text-align:center; transition:transform 0.2s,border-color 0.2s;
+  }
+  .pillar:hover { transform:translateY(-4px); }
+  .pillar.constitution:hover { border-color:var(--accent); }
+  .pillar.law:hover { border-color:var(--accent3); }
+  .pillar.bridge:hover { border-color:var(--accent2); }
+  .pillar .icon { font-size:2.5rem; margin-bottom:1rem; }
+  .pillar h3 { font-size:1.2rem; margin-bottom:0.8rem; }
+  .pillar p { color:var(--text-muted); font-size:0.92rem; }
+  .pillar .badge { display:inline-block; margin-top:1rem; padding:0.3rem 0.8rem; border-radius:999px; font-size:0.75rem; }
+  .pillar.constitution .badge { background:rgba(34,211,238,0.12); color:var(--accent); border:1px solid rgba(34,211,238,0.25); }
+  .pillar.law .badge { background:rgba(245,158,11,0.12); color:var(--accent3); border:1px solid rgba(245,158,11,0.25); }
+  .pillar.bridge .badge { background:rgba(99,102,241,0.12); color:var(--accent2); border:1px solid rgba(99,102,241,0.25); }
+
+  .arch-diagram {
+    display:flex; flex-direction:column; align-items:center; gap:1rem; padding:2rem;
+    background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);
+  }
+  .arch-layer {
+    width:100%; max-width:500px; padding:1.2rem 1.8rem; border-radius:var(--radius);
+    text-align:center; font-weight:600;
+  }
+  .arch-layer.top { background:rgba(34,211,238,0.1); border:1px solid rgba(34,211,238,0.2); color:var(--accent); }
+  .arch-layer.mid { background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.15); color:var(--accent3); }
+  .arch-layer.base { background:rgba(99,102,241,0.08); border:1px solid rgba(99,102,241,0.15); color:var(--accent2); }
+  .arch-arrow { font-size:1.2rem; color:var(--text-muted); }
+
+  .grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.2rem; }
+  .law-card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:1.5rem; transition:background 0.2s;
+  }
+  .law-card:hover { background:var(--bg-card-hover); }
+  .law-card h4 { font-size:0.95rem; margin-bottom:0.4rem; }
+  .law-card .meta { font-size:0.78rem; color:var(--accent3); font-style:italic; }
+
+  .principles { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.2rem; }
+  .principle {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:1.5rem; text-align:center;
+  }
+  .principle .num { font-size:2rem; font-weight:800; color:var(--accent); opacity:0.5; margin-bottom:0.5rem; font-family:Georgia,serif; }
+  .principle p { color:var(--text-muted); font-size:0.88rem; }
+
+  .code-block {
+    background:#0f172a; border:1px solid var(--border); border-radius:var(--radius);
+    padding:1.8rem; font-family:'Fira Code',monospace; font-size:0.85rem; color:#cbd5e1; overflow-x:auto;
+  }
+  .code-block .kw { color:var(--accent); }
+  .code-block .cmt { color:var(--text-muted); }
+
+  .footer { border-top:1px solid var(--border); padding:3rem 2rem; text-align:center; color:var(--text-muted); font-size:0.85rem; }
+  .footer a { color:var(--accent); text-decoration:none; }
+  .footer .links { display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; margin-bottom:1rem; }
+  .footer .note { margin-top:1.5rem; font-size:0.78rem; opacity:0.7; }
+
+  @media(max-width:640px){ .container{padding:2.5rem 1rem;} }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="emblem">🏛️</div>
+  <h1>Nohn<span class="cyan">™</span> Core<br><span style="font-size:0.7em;font-weight:400;">Soul of the Virtual World</span></h1>
+  <p class="tagline">数字文明时代的方舟。不建平台、不做产品、不托管数据——只定义规则、提供灵魂、守护秩序。</p>
+  <div class="law-equation">Nohn™ = 宪法 · 法律 · 兼容框架</div>
+</section>
+
+<div class="container">
+
+  <!-- About -->
+  <section>
+    <h2><span>◆</span> 关于 Nohn™ Core</h2>
+    <p style="color:var(--text-muted);max-width:760px;font-size:0.95rem;">
+      Nohn™ Core 是面向未来虚拟世界的底层核心框架。它构建了一套独立自洽的世界规则系统，能够承载虚拟生物、数字身份和文明数据。在现实世界波动和不确定性之外，它为数字文明提供一个永恒存在的栖居地。
+    </p>
+  </section>
+
+  <!-- Three Pillars -->
+  <section>
+    <h2><span>◆</span> 三大支柱</h2>
+    <div class="pillars">
+      <div class="pillar constitution">
+        <div class="icon">📜</div>
+        <h3>宪法 Constitution</h3>
+        <p>虚拟世界的本源公理，内容永久锁定、不可修改。整个架构的"根信任锚点"。</p>
+        <span class="badge">不可变 · 根信任</span>
+      </div>
+      <div class="pillar law">
+        <div class="icon">⚖️</div>
+        <h3>法律 Law</h3>
+        <p>身份确权、通信协议、物理基准与合规细则。随行业需求和技术演进年度迭代，版本化发布。</p>
+        <span class="badge">年度迭代 · 版本化</span>
+      </div>
+      <div class="pillar bridge">
+        <div class="icon">🌉</div>
+        <h3>兼容框架 Bridge</h3>
+        <p>全球统一的互操作协议，作为新旧世界的"接入海关"，确保任意厂商应用在 Nohn™ 生态内互联互通。</p>
+        <span class="badge">互操作 · 全球化</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section>
+    <h2><span>◆</span> 架构分层</h2>
+    <div class="arch-diagram">
+      <div class="arch-layer top">🧬 兼容框架 Bridge — 全球互操作海关</div>
+      <div class="arch-arrow">▲ 接入层</div>
+      <div class="arch-layer mid">📏 法律 Law — 身份·通信·物理·合规</div>
+      <div class="arch-arrow">▲ 规则层</div>
+      <div class="arch-layer base">⛓️ 宪法 Constitution — 不可变根信任</div>
+    </div>
+  </section>
+
+  <!-- Law Standards -->
+  <section>
+    <h2><span>◆</span> 法律标准体系</h2>
+    <div class="grid2">
+      <div class="law-card"><h4>🆔 身份确权标准</h4><div class="meta">Identity Attestation Standard</div><p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">虚拟世界中的数字身份溯源、确权与认证规范。</p></div>
+      <div class="law-card"><h4>📡 通信协议标准</h4><div class="meta">Communication Protocol Standard</div><p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">跨实体、跨世界的数据交换与消息传递规范。</p></div>
+      <div class="law-card"><h4>🌍 全球经济统一标准</h4><div class="meta">Global Economic Unified Standard</div><p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">虚拟经济体的价值度量、交易与清算规则。</p></div>
+      <div class="law-card"><h4>🔬 物理基线标准</h4><div class="meta">Physics Baseline Standard</div><p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">虚拟世界的空间、时间、因果律等底层物理参数定义。</p></div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section>
+    <h2><span>◆</span> 核心原则</h2>
+    <div class="principles">
+      <div class="principle"><div class="num">I</div><p>宪法不可修改，作为所有规则的最高优先级锚点。</p></div>
+      <div class="principle"><div class="num">II</div><p>法律版本化迭代，任何修改必须通过版本追溯与合规审查。</p></div>
+      <div class="principle"><div class="num">III</div><p>不做平台，不托管数据，不运营服务——只定义规则与秩序。</p></div>
+      <div class="principle"><div class="num">IV</div><p>兼容框架保持中立，不偏向任何特定厂商或实现。</p></div>
+    </div>
+  </section>
+
+  <!-- Quick Start -->
+  <section>
+    <h2><span>◆</span> 快速接入</h2>
+    <div class="code-block">
+<span class="kw">import</span> constitution<br>
+<span class="kw">from</span> law <span class="kw">import</span> IdentityStandard, PhysicsBaseline<br>
+<span class="kw">from</span> compatibility_bridge <span class="kw">import</span> Bridge<br>
+<br>
+<span class="cmt"># 你的虚拟世界继承 Nohn™ Core 规则内核</span><br>
+bridge = Bridge()<br>
+bridge.load_constitution(<span class="kw">constitution</span>)<br>
+bridge.register_law(IdentityStandard)<br>
+bridge.register_law(PhysicsBaseline)
+    </div>
+  </section>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="links">
+    <a href="https://gitee.com/lin-mingjun-hua_0/SPL-virtual-world-core" target="_blank">Gitee</a>
+    <a href="https://github.com/nohn3043-arch/SPL-virtual-world-core" target="_blank">GitHub</a>
+    <span>nohn3043@gmail.com</span>
+    <span>q3265981@163.com</span>
+  </div>
+  <div class="note">
+    &copy; 2026 Nohn&trade;. All Rights Reserved · 「Nohn™」及「第二视角™」为虚拟世界领域未注册商标<br>
+    本作品不是开源软件，不适用任何开源许可证。企业/机构/政府商用须签署《Nohn™ 商业授权协议》。<br>
+    <em>人类需要秩序。虚拟世界需要一个灵魂。我们，提供答案。</em>
+  </div>
+</div>
+
+</body>
+</html>
